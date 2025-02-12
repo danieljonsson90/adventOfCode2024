@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="content mb-4">
+    <h1>Detta är advent of Code!</h1>
+    <h2>Låt spelen börja!</h2>
+  </div>
+
+  <form [formGroup]="form">
+    <div>
+      <label for="dropdown" class="mb-2">Välj en dag:</label>
+    </div>
+    <select id="dropdown" formControlName="dropdownControl">
+      @for(option of options; track $index){
+      <option [value]="option.value">
+        {{ option.label }}
+      </option>
+      }
+    </select>
+    @if(form.get('dropdownControl')?.value !== '0'){
+    <div class="mt-4">
+      <label for="dropdown" class="mb-2">Välj problem:</label>
+    </div>
+    <select id="dropdown" formControlName="dropdownProblemControl">
+      @for(option of problemOptions; track $index){
+      <option [value]="option.value">
+        {{ option.label }}
+      </option>
+      }
+    </select>
+    }
+  </form>
+  <p class="mt-4">Resultat är: {{ this.result }}</p>
+</div>
