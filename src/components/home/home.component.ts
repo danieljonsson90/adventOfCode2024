@@ -13,12 +13,10 @@ import {
   dayOneProblemOne,
   dayOneProblemTwo,
   handleData,
-} from '../../functions/dayOne';
-import { dayTwoProblemOne, dayTwoProblemTwo } from '../../functions/dayTwo';
-import {
-  dayThreeProblemOne,
-  dayThreeProblemTwo,
-} from '../../functions/dayThree';
+} from '../../functions/day1';
+import { dayTwoProblemOne, dayTwoProblemTwo } from '../../functions/day2';
+import { dayThreeProblemOne, dayThreeProblemTwo } from '../../functions/day3';
+import { dayFourProblemOne, dayFourProblemTwo } from '../../functions/day4';
 
 @UntilDestroy()
 @Component({
@@ -84,6 +82,10 @@ export class HomeComponent implements OnInit {
                       this.dayThree(data);
                       break;
                     }
+                    case '4': {
+                      this.dayFour(data);
+                      break;
+                    }
                     default: {
                       return;
                     }
@@ -108,6 +110,28 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  dayTwo(data: string) {
+    this.problemOneOrTwo(
+      () => dayTwoProblemOne(data, this.result),
+      () => dayTwoProblemTwo(data, this.result)
+    );
+  }
+
+  dayThree(data: string) {
+    this.problemOneOrTwo(
+      () => dayThreeProblemOne(data, this.result),
+      () => dayThreeProblemTwo(data, this.result)
+    );
+  }
+  dayFour(data: string) {
+    [this.listOne, this.listTwo] = handleData(data);
+
+    this.problemOneOrTwo(
+      () => dayFourProblemOne(data, this.result),
+      () => dayFourProblemTwo(data, this.result)
+    );
+  }
+
   private problemOneOrTwo(problemOne: () => number, problemTwo: () => number) {
     this.result = 0;
     this.form
@@ -122,19 +146,5 @@ export class HomeComponent implements OnInit {
           this.result = 0;
         }
       });
-  }
-
-  dayTwo(data: string) {
-    this.problemOneOrTwo(
-      () => dayTwoProblemOne(data, this.result),
-      () => dayTwoProblemTwo(data, this.result)
-    );
-  }
-
-  dayThree(data: string) {
-    this.problemOneOrTwo(
-      () => dayThreeProblemOne(data, this.result),
-      () => dayThreeProblemTwo(data, this.result)
-    );
   }
 }
