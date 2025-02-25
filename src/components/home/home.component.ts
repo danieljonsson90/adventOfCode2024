@@ -17,6 +17,7 @@ import {
 import { dayTwoProblemOne, dayTwoProblemTwo } from '../../functions/day2';
 import { dayThreeProblemOne, dayThreeProblemTwo } from '../../functions/day3';
 import { dayFourProblemOne, dayFourProblemTwo } from '../../functions/day4';
+import { dayFiveProblemOne, dayFiveProblemTwo } from '../../functions/day5';
 
 @UntilDestroy()
 @Component({
@@ -86,6 +87,13 @@ export class HomeComponent implements OnInit {
                       this.dayFour(data);
                       break;
                     }
+                    case '5': {
+                      this.problemOneOrTwo(
+                        () => dayFiveProblemOne(data, this.result),
+                        () => dayFiveProblemTwo(data, this.result)
+                      );
+                      break;
+                    }
                     default: {
                       return;
                     }
@@ -124,8 +132,6 @@ export class HomeComponent implements OnInit {
     );
   }
   dayFour(data: string) {
-    [this.listOne, this.listTwo] = handleData(data);
-
     this.problemOneOrTwo(
       () => dayFourProblemOne(data, this.result),
       () => dayFourProblemTwo(data, this.result)
