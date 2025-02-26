@@ -139,14 +139,15 @@ export class HomeComponent implements OnInit {
   }
 
   private problemOneOrTwo(problemOne: () => number, problemTwo: () => number) {
-    this.result = 0;
     this.form
       .get('dropdownProblemControl')
       ?.valueChanges.pipe()
       .subscribe((val) => {
         if (val === '1') {
+          this.result = 0;
           this.result = problemOne();
         } else if (val === '2') {
+          this.result = 0;
           this.result = problemTwo();
         } else {
           this.result = 0;
