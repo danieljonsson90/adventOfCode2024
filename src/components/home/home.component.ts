@@ -18,6 +18,7 @@ import { dayTwoProblemOne, dayTwoProblemTwo } from '../../functions/day2';
 import { dayThreeProblemOne, dayThreeProblemTwo } from '../../functions/day3';
 import { dayFourProblemOne, dayFourProblemTwo } from '../../functions/day4';
 import { dayFiveProblemOne, dayFiveProblemTwo } from '../../functions/day5';
+import { daySixProblemOne, daySixProblemTwo } from '../../functions/day6';
 
 @UntilDestroy()
 @Component({
@@ -76,21 +77,37 @@ export class HomeComponent implements OnInit {
                       break;
                     }
                     case '2': {
-                      this.dayTwo(data);
+                      this.problemOneOrTwo(
+                        () => dayTwoProblemOne(data, this.result),
+                        () => dayTwoProblemTwo(data, this.result)
+                      );
                       break;
                     }
                     case '3': {
-                      this.dayThree(data);
+                      this.problemOneOrTwo(
+                        () => dayThreeProblemOne(data, this.result),
+                        () => dayThreeProblemTwo(data, this.result)
+                      );
                       break;
                     }
                     case '4': {
-                      this.dayFour(data);
+                      this.problemOneOrTwo(
+                        () => dayFourProblemOne(data, this.result),
+                        () => dayFourProblemTwo(data, this.result)
+                      );
                       break;
                     }
                     case '5': {
                       this.problemOneOrTwo(
                         () => dayFiveProblemOne(data, this.result),
                         () => dayFiveProblemTwo(data, this.result)
+                      );
+                      break;
+                    }
+                    case '6': {
+                      this.problemOneOrTwo(
+                        () => daySixProblemOne(data, this.result),
+                        () => daySixProblemTwo(data, this.result)
                       );
                       break;
                     }
@@ -115,26 +132,6 @@ export class HomeComponent implements OnInit {
     this.problemOneOrTwo(
       () => dayOneProblemOne(this.listOne, this.listTwo, this.result),
       () => dayOneProblemTwo(this.listOne, this.listTwo, this.result)
-    );
-  }
-
-  dayTwo(data: string) {
-    this.problemOneOrTwo(
-      () => dayTwoProblemOne(data, this.result),
-      () => dayTwoProblemTwo(data, this.result)
-    );
-  }
-
-  dayThree(data: string) {
-    this.problemOneOrTwo(
-      () => dayThreeProblemOne(data, this.result),
-      () => dayThreeProblemTwo(data, this.result)
-    );
-  }
-  dayFour(data: string) {
-    this.problemOneOrTwo(
-      () => dayFourProblemOne(data, this.result),
-      () => dayFourProblemTwo(data, this.result)
     );
   }
 
