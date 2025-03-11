@@ -10,12 +10,25 @@ let xLength = 0;
 let lastCoordinates: string[] = [];
 let currentCoordinates: string[] = [];
 
-export const daySixProblemOne = (data: string, result: number): number => {
+export const day6ProblemOne = (data: string, result: number): number => {
+  resetValues();
   walkTheLab(data);
   result = numberOfUnuique;
   return result;
 };
-
+function resetValues() {
+  numberOfUnuique = 0;
+  nextDirection = '';
+  posY = 0;
+  posX = 0;
+  startY = 0;
+  startX = 0;
+  coordinateSystem = [];
+  stop = false;
+  xLength = 0;
+  lastCoordinates = [];
+  currentCoordinates = [];
+}
 function walkTheLab(data: string) {
   const inputLists = data.split('\r\n');
   coordinateSystem = inputLists.map((list) => list.split(''));
@@ -145,7 +158,8 @@ function newDirection(dir: string): string {
   return newDir;
 }
 
-export const daySixProblemTwo = (data: string, result: number): number => {
+export const day6ProblemTwo = (data: string, result: number): number => {
+  resetValues();
   walkTheLab(data);
   const inputLists = data.split('\r\n');
   for (const [index, list] of inputLists.entries()) {

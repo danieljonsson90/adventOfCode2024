@@ -1,4 +1,4 @@
-export const dayFiveProblemOne = (data: string, result: number): number => {
+export const day5ProblemOne = (data: string, result: number): number => {
   const inputLists = data.split('\r\n\r\n');
   const finalLists = [];
   const hashMap = new Map<string, string[]>();
@@ -34,7 +34,7 @@ export const dayFiveProblemOne = (data: string, result: number): number => {
   return result;
 };
 
-export const dayFiveProblemTwo = (data: string, result: number): number => {
+export const day5ProblemTwo = (data: string, result: number): number => {
   const inputLists = data.split('\r\n\r\n');
   const finalLists = [];
   const hashMap = new Map<string, string[]>();

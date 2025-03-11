@@ -1,4 +1,4 @@
-export const handleData = (data: string): [number[], number[]] => {
+const handleData = (data: string): [number[], number[]] => {
   const listOne = [];
   const listTwo = [];
   const lines = data.split('\n');
@@ -14,23 +14,17 @@ export const handleData = (data: string): [number[], number[]] => {
   return [listOne, listTwo];
 };
 
-export function dayOneProblemOne(
-  listOne: number[],
-  listTwo: number[],
-  result: number
-): number {
+export function day1ProblemOne(data: string, result: number): number {
+  let [listOne, listTwo] = handleData(data);
   for (let i = 0; i < listOne.length; i++) {
     result += Math.abs(listOne[i] - listTwo[i]);
   }
   return result;
 }
 
-export const dayOneProblemTwo = (
-  listOne: number[],
-  listTwo: number[],
-  result: number
-): number => {
+export const day1ProblemTwo = (data: string, result: number): number => {
   let numberOfTimesInList2 = 0;
+  let [listOne, listTwo] = handleData(data);
   for (const item of listOne) {
     for (const item2 of listTwo) {
       if (item === item2) {

@@ -1,4 +1,4 @@
-export function dayTwoProblemOne(data: string, result: number): number {
+export function day2ProblemOne(data: string, result: number): number {
   const lines = data.split('\n');
   result = 0;
   for (const line of lines) {
@@ -16,7 +16,7 @@ export function dayTwoProblemOne(data: string, result: number): number {
   return result;
 }
 
-export const dayTwoProblemTwo = (data: string, result: number): number => {
+export const day2ProblemTwo = (data: string, result: number): number => {
   const lines = data.split('\n');
   result = 0;
   for (const line of lines) {

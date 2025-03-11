@@ -1,4 +1,4 @@
-export function dayFourProblemOne(data: string, result: number): number {
+export function day4ProblemOne(data: string, result: number): number {
   let lines = data.match(/.{1,140}/g);
   if (lines) {
     for (const [index, line] of lines.entries()) {
@@ -87,7 +87,7 @@ export function dayFourProblemOne(data: string, result: number): number {
   return result;
 }
 
-export const dayFourProblemTwo = (data: string, result: number): number => {
+export const day4ProblemTwo = (data: string, result: number): number => {
   let lines = data.match(/.{1,140}/g);
   if (lines) {
     for (const [index, line] of lines.entries()) {

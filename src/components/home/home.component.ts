@@ -9,16 +9,7 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
-import {
-  dayOneProblemOne,
-  dayOneProblemTwo,
-  handleData,
-} from '../../functions/day1';
-import { dayTwoProblemOne, dayTwoProblemTwo } from '../../functions/day2';
-import { dayThreeProblemOne, dayThreeProblemTwo } from '../../functions/day3';
-import { dayFourProblemOne, dayFourProblemTwo } from '../../functions/day4';
-import { dayFiveProblemOne, dayFiveProblemTwo } from '../../functions/day5';
-import { daySixProblemOne, daySixProblemTwo } from '../../functions/day6';
+import * as AllFunctions from '../../functions';
 
 @UntilDestroy()
 @Component({
@@ -42,6 +33,7 @@ export class HomeComponent implements OnInit {
     value: i + 1,
     label: `${i + 1}`,
   }));
+
   constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -63,7 +55,9 @@ export class HomeComponent implements OnInit {
       .get('dropdownControl')
       ?.valueChanges.pipe(
         switchMap((val) => {
-          if (val) {
+          if (+val) {
+            this.result = 0;
+            this.form.get('dropdownProblemControl')?.patchValue('0');
             return this.http
               .get(`assets/day${val}.txt`, {
                 responseType: 'text',
@@ -71,50 +65,16 @@ export class HomeComponent implements OnInit {
               .pipe(
                 untilDestroyed(this),
                 tap((data) => {
-                  switch (val) {
-                    case '1': {
-                      this.dayOne(data);
-                      break;
-                    }
-                    case '2': {
-                      this.problemOneOrTwo(
-                        () => dayTwoProblemOne(data, this.result),
-                        () => dayTwoProblemTwo(data, this.result)
-                      );
-                      break;
-                    }
-                    case '3': {
-                      this.problemOneOrTwo(
-                        () => dayThreeProblemOne(data, this.result),
-                        () => dayThreeProblemTwo(data, this.result)
-                      );
-                      break;
-                    }
-                    case '4': {
-                      this.problemOneOrTwo(
-                        () => dayFourProblemOne(data, this.result),
-                        () => dayFourProblemTwo(data, this.result)
-                      );
-                      break;
-                    }
-                    case '5': {
-                      this.problemOneOrTwo(
-                        () => dayFiveProblemOne(data, this.result),
-                        () => dayFiveProblemTwo(data, this.result)
-                      );
-                      break;
-                    }
-                    case '6': {
-                      this.problemOneOrTwo(
-                        () => daySixProblemOne(data, this.result),
-                        () => daySixProblemTwo(data, this.result)
-                      );
-                      break;
-                    }
-                    default: {
-                      return;
-                    }
-                  }
+                  const problemOneKey =
+                    `day${val}ProblemOne` as keyof typeof AllFunctions;
+                  const problemTwoKey =
+                    `day${val}ProblemTwo` as keyof typeof AllFunctions;
+                  const problemOne = AllFunctions[problemOneKey];
+                  const problemTwo = AllFunctions[problemTwoKey];
+                  this.problemOneOrTwo(
+                    () => problemOne(data, this.result),
+                    () => problemTwo(data, this.result)
+                  );
                 })
               );
           } else {
@@ -124,15 +84,6 @@ export class HomeComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe();
-  }
-
-  dayOne(data: string) {
-    [this.listOne, this.listTwo] = handleData(data);
-
-    this.problemOneOrTwo(
-      () => dayOneProblemOne(this.listOne, this.listTwo, this.result),
-      () => dayOneProblemTwo(this.listOne, this.listTwo, this.result)
-    );
   }
 
   private problemOneOrTwo(problemOne: () => number, problemTwo: () => number) {

@@ -1,4 +1,4 @@
-export function dayThreeProblemOne(data: string, result: number): number {
+export function day3ProblemOne(data: string, result: number): number {
   result = 0;
   const regex = /mul\((\d{1,3}),(\d{1,3})\)/g;
   let lines = [...data.matchAll(regex)];
@@ -9,7 +9,7 @@ export function dayThreeProblemOne(data: string, result: number): number {
   return result;
 }
 
-export const dayThreeProblemTwo = (data: string, result: number): number => {
+export const day3ProblemTwo = (data: string, result: number): number => {
   const lines = data.split("don't()");
   result = 0;
   const regex = /mul\((\d{1,3}),(\d{1,3})\)/g;
