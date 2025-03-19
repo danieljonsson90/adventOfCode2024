@@ -5,3 +5,5 @@ export { day4ProblemOne, day4ProblemTwo } from './day4';
 export { day5ProblemOne, day5ProblemTwo } from './day5';
 export { day6ProblemOne, day6ProblemTwo } from './day6';
 export { day7ProblemOne, day7ProblemTwo } from './day7';
+export { day8ProblemOne, day8ProblemTwo } from './day8';
+export { day9ProblemOne, day9ProblemTwo } from './day9';

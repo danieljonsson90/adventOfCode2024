@@ -16,6 +16,7 @@ export const day6ProblemOne = (data: string, result: number): number => {
   result = numberOfUnuique;
   return result;
 };
+
 function resetValues() {
   numberOfUnuique = 0;
   nextDirection = '';
@@ -29,6 +30,7 @@ function resetValues() {
   lastCoordinates = [];
   currentCoordinates = [];
 }
+
 function walkTheLab(data: string) {
   const inputLists = data.split('\r\n');
   coordinateSystem = inputLists.map((list) => list.split(''));
