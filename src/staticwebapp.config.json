@@ -1,9 +1,14 @@
 {
-  "routes": [{ "route": "/*", "allowedRoles": ["authenticated"] }],
+  "routes": [
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
   "responseOverrides": {
     "401": {
       "statusCode": 302,
-      "redirect": "/auth/login/aad"
+      "redirect": "/.auth/login/aad"
     }
   }
 }
