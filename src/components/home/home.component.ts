@@ -10,12 +10,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import * as AllFunctions from '../../functions';
+import { LoginComponent } from '../login.component';
 
 @UntilDestroy()
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, LoginComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
