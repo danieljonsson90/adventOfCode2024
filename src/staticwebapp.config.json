@@ -9,7 +9,7 @@
     "identityProviders": {
       "azureActiveDirectory": {
         "clientId": "AZURE_AD_CLIENT_ID",
-        "authority": "https://login.microsoftonline.com/33787c8f-3cbc-433b-baeb-6068a2db5c4e",
+        "authority": "https://login.microsoftonline.com",
         "loginUrl": "/.auth/login/aad",
         "name": "aad",
         "logoutUrl": "/.auth/logout",
