@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -21,7 +21,7 @@ import * as AllFunctions from '../../functions';
 })
 export class HomeComponent implements OnInit {
   form!: FormGroup;
-  result = 0;
+  result = signal(0);
   listOne: number[] = [];
   listTwo: number[] = [];
   options = Array.from({ length: 24 }, (_, i) => ({
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       ?.valueChanges.pipe(
         switchMap((val) => {
           if (+val) {
-            this.result = 0;
+            this.result.set(0);
             this.form.get('dropdownProblemControl')?.patchValue('0');
             return this.http
               .get(`assets/day${val}.txt`, {
@@ -72,8 +72,8 @@ export class HomeComponent implements OnInit {
                   const problemOne = AllFunctions[problemOneKey];
                   const problemTwo = AllFunctions[problemTwoKey];
                   this.problemOneOrTwo(
-                    () => problemOne(data, this.result),
-                    () => problemTwo(data, this.result)
+                    () => problemOne(data, this.result()),
+                    () => problemTwo(data, this.result())
                   );
                 })
               );
@@ -92,13 +92,13 @@ export class HomeComponent implements OnInit {
       ?.valueChanges.pipe()
       .subscribe((val) => {
         if (val === '1') {
-          this.result = 0;
-          this.result = problemOne();
+          this.result.set(0);
+          this.result.set(problemOne());
         } else if (val === '2') {
-          this.result = 0;
-          this.result = problemTwo();
+          this.result.set(0);
+          this.result.set(problemTwo());
         } else {
-          this.result = 0;
+          this.result.set(0);
         }
       });
   }
